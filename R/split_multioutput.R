@@ -1,3 +1,48 @@
+#' Split a dataset into training and test sets for multiple binary outcomes
+#'
+#' Splits a dataset into training and test sets while attempting to distribute
+#' positive cases across multiple binary outcomes as evenly as possible.
+#'
+#' @param data A data frame containing the dataset to be split.
+#' @param outcomes A character vector specifying the names of the binary
+#'   outcome variables.
+#' @param k An integer specifying the number of folds used to construct the
+#'   split. Default is 10.
+#' @param seed An optional integer used to make the random assignment
+#'   reproducible. Default is NULL.
+#'
+#' @return A list containing two data frames:
+#' \describe{
+#'   \item{train}{The training set, containing observations assigned to folds 1--7.}
+#'   \item{test}{The test set, containing observations assigned to folds 8--10.}
+#' }
+#'
+#' @details
+#' The function converts the specified outcome variables to binary numeric
+#' values (0/1) and distributes observations across folds while attempting to
+#' balance the number of positive cases for each outcome. The first seven
+#' folds are used for the training set and the remaining three folds are used
+#' for the test set.
+#'
+#' Missing values in the outcome variables are not allowed, and all outcomes
+#' must be coded as 0/1.
+#'
+#' @examples
+#' data <- data.frame(
+#'   outcome1 = rep(c(0, 1), 10),
+#'   outcome2 = rep(c(0, 0, 1, 1), 5)
+#' )
+#'
+#' split <- split_multioutput(
+#'   data = data,
+#'   outcomes = c("outcome1", "outcome2"),
+#'   seed = 1234
+#' )
+#'
+#' train_set <- split$train
+#' test_set <- split$test
+#'
+#' @export
 split_multioutput <- function(data, outcomes, k = 10, seed = NULL) {
 
   labels <- data[, outcomes, drop = FALSE]
