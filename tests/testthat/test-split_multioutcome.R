@@ -38,9 +38,9 @@ outcomes <- c(
 
 library(testthat)
 
-test_that("split_multioutput returns valid train, test, and balanced table", {
+test_that("split_multioutcome returns valid train, test, and balanced table", {
 
-  result <- split_multioutput(
+  result <- split_multioutcome(
     data = synthetic_data,
     outcomes = outcomes,
     k = 10,
