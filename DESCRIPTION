@@ -13,3 +13,5 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     dplyr
+URL: https://github.com/JoanaVentura87/Multisplit
+BugReports: https://github.com/JoanaVentura87/Multisplit/issues
