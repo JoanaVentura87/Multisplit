@@ -288,10 +288,10 @@ split_multioutcome <- function(
     )
   )
 
-  balanced_table <- dplyr::mutate(
-    balanced_table,
-    Check = Train_N + Test_N == Global_N
-  )
+  balanced_table$Check <-
+    balanced_table$Train_N +
+    balanced_table$Test_N ==
+    balanced_table$Global_N
 
   return(list(
     train = train_set,

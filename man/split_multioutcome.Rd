@@ -68,7 +68,7 @@ data <- data.frame(
   outcome2 = rep(c(0, 0, 1, 1), 5)
 )
 
-split <- split_multioutput(
+split <- split_multioutcome(
   data = data,
   outcomes = c("outcome1", "outcome2"),
   k = 10,
