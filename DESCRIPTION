@@ -1,9 +1,9 @@
 Package: Multisplit
-Title: What the Package Does (One Line, Title Case)
+Title: Splits a dataset into training and test sets across multiple binary outcomes
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Joana", "Martins", , "joana.ventura87@gmail.com", role = c("aut", "cre"))
+Description: The algorithm attempts to simultaneously balance fold sizes, the distribution of positive cases across outcomes, and the distribution of cases with multiple positive outcomes.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
