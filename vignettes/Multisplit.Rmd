@@ -1,5 +1,5 @@
 ---
-title: "Multisplit"
+title: " Introduction to Multisplit"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Multisplit}
@@ -13,7 +13,58 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+## Introduction
 
-```{r setup}
+The `Multisplit` package provides tools for splitting datasets
+with multiple binary outcomes into training and test sets.
+
+## Splitting a dataset
+
+First, we create a dataset containing multiple binary outcomes.
+```{r}
 library(Multisplit)
+
+data <- data.frame(
+  outcome1 = rep(c(0, 1), 10),
+  outcome2 = rep(c(0, 0, 1, 1), 5)
+)
+
+head(data)
 ```
+We can then use "split_multioutcome()" to divide the data
+into training and test sets.
+```{r}
+result <- split_multioutcome(
+  data = data,
+  outcomes = c("outcome1", "outcome2"),
+  k = 10,
+  train_folds = 7,
+  seed = 1234
+)
+```
+
+##Training and test sets
+
+The resulting object contains the training set, the test set,
+and a summary table of the distribution of positive cases.
+```{r}
+train_set <- result$train
+test_set <- result$test
+balanced_table <- result$balanced_table
+```
+The number of observations in each set can be checked with:
+```{r}
+nrow(train_set)
+nrow(test_set)
+```
+The balanced_table can be used to assess the distribution
+of positive cases across the datasets:
+```{r}
+balanced_table
+```
+
+##Conclusion
+
+The "split_multioutcome()" function provides a flexible approach
+for splitting datasets with multiple binary outcomes while
+attempting to maintain a balanced distribution of positive cases.
